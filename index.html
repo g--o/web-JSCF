@@ -5,33 +5,62 @@
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="style.css" rel="stylesheet">
+	<link rel="shortcut icon" href="">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	
-	<script>
-	function load(id) {
-		var idCapital = id.charAt(0).toUpperCase() + id.slice(1);
-		var dir = "./tests/" + idCapital + "Test/"
-		var url =  dir + id + "_check.html";
-		
-		/*$.getScript("https://g--o.github.io/JSCF/release/jscf.js", function() {
-			$.getScript(dir + "/scripts/config.js", function () {
-				$.getScript(dir + "/scripts/game.js", function() {
-					$("#"+id).load(url);
-				});
-			});
-		});*/
-		
-		$("#"+id).load(url);
 
+	<script src="./release/jscf.js"></script>
+
+	<script type="text/javascript">
+
+	// consts instead of config.js
+	var JSC_FPS = 800;
+	var JSCF_CANVAS_WIDTH = 800;
+	var JSCF_CANVAS_HEIGHT = 600;
+	var JSC_ASSETDIR = null;
+
+	function deleteObjects(){
+		if (typeof game !== 'undefined') {
+			game.stop();
+			delete game;
+		}
+		if (typeof gameStart !== 'undefined') {
+			delete gameStart;
+		}
+		if (typeof update !== 'undefined') {
+			delete update;
+		}
+		if (typeof render !== 'undefined') {
+			delete render;
+		}
+		$('canvas').remove();
+	}
+	
+	function load(id)
+	{
+		var base = "./";
+		var dir = base + "tests/" + id + "Test/";
+		var url =  dir + "index.html";
+		var target = "#"+id;
+		JSC_ASSETDIR = dir + "/assets/";
+		
+		// clean last demo
+		deleteObjects();
+		
+		// load next demo
+		$(target).load(url);
+		$.getScript(dir + "scripts/game.js", function() {
+			gameStart();
+		});
+		
 	}
 	</script>
 </head>
 <body>
 	<!-- menu -->
-	
-	<div class="nav-side-menu">
+
+	<div class="nav-side-menu" style="right: 0px;">
 		<!-- logo -->
 		<div class="brand">JSCF</div>
 		<!-- menu -->
@@ -45,9 +74,8 @@
 					  </a>
 					</li>
 					<!-- Wiki -->
-					
 					 <li>
-					  <a href="https://github.com/g--o/JSCF/wiki">  
+					  <a href="https://github.com/g--o/JSCF/wiki">
 						<i class="fa fa-book fa-lg"></i> Wiki
 					  </li>
 					</a>
@@ -57,28 +85,57 @@
 					  <i class="fa fa-info fa-lg"></i> Docs
 					  </a>
 					</li>
+					<!-- Docs -->
+					<li>
+						<a href="https://github.com/g--o/JSCF">
+							<i class="fa fa-github fa-lg"></i> Github
+						</a>
+					</li>
 					<!-- Demos -->
 					<li  data-toggle="collapse" data-target="#demos" class="collapsed">
 					  <a href="#"><i class="fa fa-folder fa-lg"></i> Demos <span class="arrow"></span></a>
 					</li>
 					<ul class="sub-menu collapse" id="demos">
-						<li><a href="#editor" data-toggle="tab" onclick='load("editor");'>Editor</a></li>
-						<li><a href="#music" data-toggle="tab" onclick='load("music");'>Music</a></li>
+						<li><a href="#Animation" data-toggle="tab" onclick='load("Animation");'>Animation</a></li>
+						<li><a href="#Collision" data-toggle="tab" onclick='load("Collision");'>Collision</a></li>
+						<li><a href="#Editor" data-toggle="tab" onclick='load("Editor");'>Editor (glitchy online; clone repo instead)</a></li>
+						<li><a href="#Input" data-toggle="tab" onclick='load("Input");'>Input</a></li>
+						<li><a href="#Music" data-toggle="tab" onclick='load("Music");'>Music</a></li>
+						<li><a href="#Pi" data-toggle="tab" onclick='load("Pi");'>Pi</a></li>
+						<li><a href="#Pong" data-toggle="tab" onclick='load("Pong");'>Pong</a></li>
+						<li><a href="#RigidBody" data-toggle="tab" onclick='load("RigidBody");'>RigidBody</a></li>
+						<li><a href="#SceneManager" data-toggle="tab" onclick='load("SceneManager");'>SceneManager</a></li>
+						<li><a href="#VecPoints" data-toggle="tab" onclick='load("VecPoints");'>VecPoints (glitchy online; clone repo instead)</a></li>
 					</ul>
 				</ul>
 		 </div>
 	</div>
-	
+
 	<!-- content -->
-	<div id="content" class = "tab-content container" style="padding-left: 300px;">	
+	<div id="content" class = "tab-content container">
+		<!-- home page -->
 		<div id="home" class="tab-pane fade in active">
 			<h2>JSCF is a lightweight 2D engine.</h2><br/>
-			Here you can find demos and links.
-			<a href = "https://github.com/g--o/JSCF">[ Github page ]</a>
+			<p>
+				Here you can find demos and links.<br/><br/>
+				
+				<b>NOTE:</b> This site is in progress, some marked demos might glitch / run slow.<br/>
+				For a consistent experience clone the repo from github and run from there.
+			</p>
+
+			<a href = "https://github.com/g--o/JSCF">Github page</a>
 		</div>
-		<div id="music" class="tab-pane fade">
-		</div>
-		<div id="editor" class="tab-pane fade"></div>
+		<!-- demos -->
+		<div id="Animation" class="tab-pane fade"></div>
+		<div id="Collision" class="tab-pane fade"></div>
+		<div id="Editor" class="tab-pane fade"></div>
+		<div id="Input" class="tab-pane fade"></div>
+		<div id="Music" class="tab-pane fade"></div>
+		<div id="Pi" class="tab-pane fade"></div>
+		<div id="Pong" class="tab-pane fade"></div>
+		<div id="RigidBody" class="tab-pane fade"></div>
+		<div id="SceneManager" class="tab-pane fade"></div>
+		<div id="VecPoints" class="tab-pane fade"></div>
 	</div>
 </body>
 </html>
