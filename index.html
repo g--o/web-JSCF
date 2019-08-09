@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Take from https://bootsnipp.com/snippets/r1Pjd -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script>
+	function load(id) {
+		var idCapital = id.charAt(0).toUpperCase() + id.slice(1);
+		var dir = "./tests/" + idCapital + "Test/"
+		var url =  dir + id + "_check.html";
+		
+		/*$.getScript("https://g--o.github.io/JSCF/release/jscf.js", function() {
+			$.getScript(dir + "/scripts/config.js", function () {
+				$.getScript(dir + "/scripts/game.js", function() {
+					$("#"+id).load(url);
+				});
+			});
+		});*/
+		
+		$("#"+id).load(url);
+
+	}
+	</script>
+</head>
+<body>
+	<!-- menu -->
+	
+	<div class="nav-side-menu">
+		<!-- logo -->
+		<div class="brand">JSCF</div>
+		<!-- menu -->
+		<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+			<div class="menu-list">
+				<ul id="menu-content" class="menu-content collapse out nav-tab">
+					<!-- Home page -->
+					<li class = "active">
+					  <a href="index.html">
+						<i class="fa fa-home fa-lg"></i> Home Page
+					  </a>
+					</li>
+					<!-- Wiki -->
+					
+					 <li>
+					  <a href="https://github.com/g--o/JSCF/wiki">  
+						<i class="fa fa-book fa-lg"></i> Wiki
+					  </li>
+					</a>
+					<!-- Docs -->
+					 <li>
+					  <a href="https://g--o.github.io/JSCF/release/docs/index.html">
+					  <i class="fa fa-info fa-lg"></i> Docs
+					  </a>
+					</li>
+					<!-- Demos -->
+					<li  data-toggle="collapse" data-target="#demos" class="collapsed">
+					  <a href="#"><i class="fa fa-folder fa-lg"></i> Demos <span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="demos">
+						<li><a href="#editor" data-toggle="tab" onclick='load("editor");'>Editor</a></li>
+						<li><a href="#music" data-toggle="tab" onclick='load("music");'>Music</a></li>
+					</ul>
+				</ul>
+		 </div>
+	</div>
+	
+	<!-- content -->
+	<div id="content" class = "tab-content container" style="padding-left: 300px;">	
+		<div id="home" class="tab-pane fade in active">
+			<h2>JSCF is a lightweight 2D engine.</h2><br/>
+			Here you can find demos and links.
+			<a href = "https://github.com/g--o/JSCF">[ Github page ]</a>
+		</div>
+		<div id="music" class="tab-pane fade">
+		</div>
+		<div id="editor" class="tab-pane fade"></div>
+	</div>
+</body>
+</html>
