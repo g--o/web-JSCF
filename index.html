@@ -36,7 +36,7 @@
 		}
 		$('canvas').remove();
 	}
-	
+
 	function load(id)
 	{
 		var base = "./";
@@ -44,16 +44,16 @@
 		var url =  dir + "index.html";
 		var target = "#"+id;
 		JSC_ASSETDIR = dir + "/assets/";
-		
+
 		// clean last demo
 		deleteObjects();
-		
+
 		// load next demo
 		$(target).load(url);
 		$.getScript(dir + "scripts/game.js", function() {
 			gameStart();
 		});
-		
+
 	}
 	</script>
 </head>
@@ -73,6 +73,12 @@
 						<i class="fa fa-home fa-lg"></i> Home Page
 					  </a>
 					</li>
+					<!-- Wiki -->
+					 <li>
+					  <a href="./editor/index.html">
+						<i class="fa fa-cube fa-lg"></i> Online Editor
+					  </li>
+					</a>
 					<!-- Wiki -->
 					 <li>
 					  <a href="https://github.com/g--o/JSCF/wiki">
@@ -98,7 +104,6 @@
 					<ul class="sub-menu collapse" id="demos">
 						<li><a href="#Animation" data-toggle="tab" onclick='load("Animation");'>Animation</a></li>
 						<li><a href="#Collision" data-toggle="tab" onclick='load("Collision");'>Collision</a></li>
-						<li><a href="#Editor" data-toggle="tab" onclick='load("Editor");'>Editor (glitchy online; clone repo instead)</a></li>
 						<li><a href="#Input" data-toggle="tab" onclick='load("Input");'>Input</a></li>
 						<li><a href="#Music" data-toggle="tab" onclick='load("Music");'>Music</a></li>
 						<li><a href="#Pi" data-toggle="tab" onclick='load("Pi");'>Pi</a></li>
@@ -118,7 +123,7 @@
 			<h2>JSCF is a lightweight 2D engine.</h2><br/>
 			<p>
 				Here you can find demos and links.<br/><br/>
-				
+
 				<b>NOTE:</b> This site is in progress, some marked demos might glitch / run slow.<br/>
 				For a consistent experience clone the repo from github and run from there.
 			</p>
@@ -128,7 +133,6 @@
 		<!-- demos -->
 		<div id="Animation" class="tab-pane fade"></div>
 		<div id="Collision" class="tab-pane fade"></div>
-		<div id="Editor" class="tab-pane fade"></div>
 		<div id="Input" class="tab-pane fade"></div>
 		<div id="Music" class="tab-pane fade"></div>
 		<div id="Pi" class="tab-pane fade"></div>
